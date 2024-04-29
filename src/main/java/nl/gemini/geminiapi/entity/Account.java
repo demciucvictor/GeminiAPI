@@ -3,6 +3,7 @@ package nl.gemini.geminiapi.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,9 +18,23 @@ public class Account {
 
 //    private long customerId;
 
-    @OneToMany
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
+    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @Override
+    public String toString(){
+        return "Account [accountId=" + accountId + ", initialCredit=" + initialCredit + ", " +
+                "transactions=" + transactions.size();
+    }
+
+    public void addTransaction(Transaction transaction){
+        if(transactions == null){
+            transactions = new ArrayList<>();
+        }
+        transactions.add(transaction);
+    }
 }

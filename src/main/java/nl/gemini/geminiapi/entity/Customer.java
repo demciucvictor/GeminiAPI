@@ -1,11 +1,10 @@
 package nl.gemini.geminiapi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +20,19 @@ public class Customer {
 
     private Double balance;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Account> transactions;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Account> accounts;
+
+    public void addAccount(Account account) {
+        if (accounts == null) {
+            accounts = new ArrayList<>();
+        }
+        accounts.add(account);
+    }
+
+    @Override
+    public String toString() {
+        return customerId + "\t" + name + "\t" + surname + "\t" + balance + "\t" + accounts.size();
+    }
 
 }

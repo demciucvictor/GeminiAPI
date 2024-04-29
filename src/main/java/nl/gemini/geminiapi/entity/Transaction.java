@@ -8,6 +8,7 @@ import lombok.Data;
 public class Transaction {
 
     @Id
+    @GeneratedValue
     private Long transactionId;
 
     private Double amount;
@@ -16,6 +17,7 @@ public class Transaction {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
+    @JoinColumn(name = "account_id")
     private Account account;
 }

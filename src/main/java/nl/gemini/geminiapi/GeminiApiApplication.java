@@ -16,9 +16,9 @@ public class GeminiApiApplication {
         SpringApplication.run(GeminiApiApplication.class, args);
     }
 
-    @PostConstruct
-    private void postInit(){
-        System.out.println(customerRepository.findAll());
-    }
+//    @PostConstruct
+//    private void postInit(){
+//        System.out.println(customerRepository.findAll());
+//    }
 
 }
