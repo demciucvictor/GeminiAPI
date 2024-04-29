@@ -9,16 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GeminiApiApplication {
 
-    @Autowired
-    CustomerRepository customerRepository;
-
     public static void main(String[] args) {
         SpringApplication.run(GeminiApiApplication.class, args);
     }
 
-//    @PostConstruct
-//    private void postInit(){
-//        System.out.println(customerRepository.findAll());
-//    }
 
 }
