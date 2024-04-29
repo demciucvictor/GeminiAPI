@@ -2,6 +2,7 @@ package nl.gemini.geminiapi.controller;
 
 import nl.gemini.geminiapi.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,13 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/newaccount")
-    public void createNewAccount(@RequestParam Long customerId, @RequestParam Double initialCredit) {
-        accountService.createNewAccount(customerId, initialCredit);
+    public ResponseEntity<Void> createNewAccount(@RequestParam Long customerId, @RequestParam Double initialCredit) {
+        Boolean accountCreated = accountService.createNewAccount(customerId, initialCredit);
+        if (accountCreated) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 }

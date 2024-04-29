@@ -24,7 +24,7 @@ public class AccountService {
     @Autowired
     private TransactionService transactionService;
 
-    public void createNewAccount(Long customerId, Double initialCredit) {
+    public Boolean createNewAccount(Long customerId, Double initialCredit) {
         Account accountToCreate = new Account();
         Customer customer;
         Optional<Customer> customerOpt = customerRepository.findById(customerId);
@@ -32,7 +32,7 @@ public class AccountService {
            customer = customerOpt.get();
         } else {
             log.error("Invalid customer id: {}", customerId);
-            return;
+            return false;
         }
         accountToCreate.setCustomer(customer);
 
@@ -40,6 +40,7 @@ public class AccountService {
 
         customer.addAccount(accountToCreate);
         customerRepository.save(customer);
+        return true;
     }
 
     private void setInitialAccountCredit(Account account, Double initialCredit) {
