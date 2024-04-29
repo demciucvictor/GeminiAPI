@@ -13,3 +13,4 @@ On start up, the Application creates 4 users with the following data:
 I'm not very creative with names :)
 
 Currently testable via Postman.
+Runnable via an IDE that supports spring boot apllication.
