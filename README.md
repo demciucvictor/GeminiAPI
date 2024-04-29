@@ -5,6 +5,8 @@ Current API runs on port 8080 and has 2 endpoints:
 
 On start up, the Application creates 4 users with the following data:
 
+Id, Name, Surname, balance:
+
 (1, 'John', 'Wick', 50000),
 (2, 'John', 'Smith', 199.5),
 (3, 'Peter', 'Parker', 97.5),
