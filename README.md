@@ -15,4 +15,4 @@ Id, Name, Surname, balance:
 I'm not very creative with names :)
 
 Currently testable via Postman.
-Runnable via an IDE that supports spring boot apllication.
+Runnable via an IDE that supports spring boot application.
